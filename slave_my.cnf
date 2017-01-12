@@ -1,0 +1,41 @@
+
+[mysqld]
+server-id=158
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+innodb_use_sys_malloc =0 
+transaction-isolation = READ-COMMITTED
+user=mysql
+# Disabling symbolic-links is recommended to prevent assorted security risks
+default-storage-engine=innodb
+character-set-server=utf8
+collation-server=utf8_general_ci
+lower_case_table_names=1
+tmp_table_size=512M
+max_heap_table_size=512M
+symbolic-links=0
+key_buffer = 16M
+key_buffer_size = 32M
+max_allowed_packet = 32M
+thread_stack = 256K
+thread_cache_size = 64
+query_cache_limit = 8M
+query_cache_size = 1024M
+query_cache_type = 1
+max_connections = 550
+binlog_format = mixed
+read_buffer_size = 1024M
+read_rnd_buffer_size = 1024M
+sort_buffer_size = 1M
+join_buffer_size = 8M
+#table_open_cache=2048
+#sql_slave_skip_counter = 1
+replicate-wild-ignore-table =pdfactory_mdss.%,mdss.s_traffic_homepage_map_day,mdss.snmp_device_perf
+slave-skip-errors = 1062,1060,1146
+log_bin_trust_function_creators=1
+innodb_flush_log_at_trx_commit = 0 
+sync_binlog  = 1 
+#relay_log = /var/log/relaylog/relay.log
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
