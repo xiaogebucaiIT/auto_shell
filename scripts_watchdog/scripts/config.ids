@@ -1,0 +1,15 @@
+#!/bin/sh
+# Config.ids Set Variable
+# BENZLEE 2002-01-27
+
+IDS=/nmsmw
+DAEMON_BIN=$IDS/daemon/bin
+CTLD_BIN=$IDS/controld/bin
+SERVICE_BIN=$IDS/service/bin
+MYSQL_BIN=$IDS/mysql/bin
+MYSQL_VAR=$IDS/var/db
+RUN_DIR=$IDS/var/run
+UTIL_BIN=$IDS/util/bin
+SCRIPTS=$IDS/scripts
+MYCHK=$MYSQL_BIN/myisamchk
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+#rc.ibms for gms server
+
+/nmsmw/scripts/rc.pwatch start /nmsmw/daemon/dev_register/conf_recvd.py
+/nmsmw/scripts/rc.pwatch start /nmsmw/daemon/dev_register/encrypt_conf.py
+/nmsmw/scripts/rc.pwatch start /nmsmw/daemon/mtx_export/event_export.py
+#/nmsmw/scripts/rc.pwatch start /nmsmw/daemon/cacheinfo/TransCacheInfo.py
+/nmsmw/scripts/rc.pwatch start /nmsmw/daemon/data_process/send_data_pc.py
+/nmsmw/scripts/rc.pwatch start /nmsmw/daemon/data_process/merge_data.py
+/nmsmw/scripts/rc.pwatch start /nmsmw/daemon/dev_register/dev_register.py
+

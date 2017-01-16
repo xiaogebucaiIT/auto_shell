@@ -1,0 +1,58 @@
+#!/bin/sh
+# utils.ids
+# BENZLEE 2002-01-31
+
+kill_proc_by_pid()
+{
+	PID=$1
+	if test -n "$PID" 
+	then
+		kill -9 $PID 1>/dev/null 2>/dev/null
+	fi
+}
+
+kill_procs_by_name()
+{
+	killall -9 $1
+	PROC_NAME=$1
+	PROC=`ps ax | grep "$PROC_NAME" | grep -E -v "grep|watch" | awk '{print $1}'`
+	for P in $PROC
+	do
+		kill -9 $P 2>/dev/null 1>/dev/null
+	done
+}
+
+# ret == 1: exist ---------- ret == 0: not exist
+check_proc_exist_by_name()
+{
+	PROC_NAME=$1
+	SELF=$2
+	if  /bin/ps ax | grep "$PROC_NAME" | grep -v "grep" | grep -v "$SELF" 1>/dev/null 2>/dev/null
+	then
+		echo "A Process $PROC_NAME already exists."
+		return 0
+	fi
+	return 1
+}
+
+check_proc_exist_by_pidfile()
+{
+	PROC_PID_FILE=$1
+	PROC_NAME=$2
+
+	if test -r "$PROC_PID_FILE"
+	then
+		PID=`cat $PROC_PID_FILE`
+	fi
+
+	if test -n "$PID"
+	then
+		if /bin/kill -0 $PID
+		then
+			echo "The process $PROC_NAME($PID) already exists."			
+			return 0
+		fi 
+		rm -f $PROC_PID_FILE
+	fi
+	return 1
+}
